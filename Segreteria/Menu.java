@@ -69,9 +69,23 @@ public class Menu {
 	}
 	
 	private static String select(String line,Boolean val)
+		/*
+			[LINE] + :  <--- INPUT UTENTE
+			ex:	Immetti numero: _
+			L'input deve essere una stringa\numero
+			RITORNA LA STRINGA DA INPUT
+			
+			SE val == true, la stringa deve avere len > 1
+			escludendo spazi iniziali e finali.
+			RITORNA LA STRINGA TRIMMATA
+			
+			EX: "          I      "
+			 	ACCETTATA con val = false;
+				FORMATTATA IN: "I" E RIFIUTATA
+		*/
 	{
 		while(true)
-		{
+		{ 
 			String tmp;
 			System.out.println();
 			System.out.print(line + ": ");
@@ -120,7 +134,6 @@ public class Menu {
 			
 
 		db_studente[db_pointer] = temp;
-						System.out.println("ayylmaooo");
 		db_pointer ++;
 		return db_pointer;
 	}
@@ -150,7 +163,7 @@ public class Menu {
 	}
 
 	
-	private static int remainingEx() throws IOException,InterruptedException
+	private static int remainingEx() throws IOException,InterruptedException //Ritorna il numero di esami da conseguire
 	{
 		if (db_pointer == 0) return 129;
 		int select_a;
@@ -159,7 +172,7 @@ public class Menu {
 		return db_studente[select_a].remainingExams();
 	}
 	
-	private static void printDB() throws IOException,InterruptedException
+	private static void printDB() throws IOException,InterruptedException //Stampa l'intero "database"
 	{
 		clear.inheritIO().start().waitFor();
 		int i = 0;
@@ -176,13 +189,13 @@ public class Menu {
 		return;
 	}
 	
-	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //Formatter
 	private static final String[]options = {"Nuovo Studente","Confronta Iscrizioni","Calcola esami rimanenti","Esci"}; //Titolo opzioni
 	private static final int options_count = 4; //Conta delle opzioni
 	private static final ProcessBuilder clear = getCommand(); //Variabile utilizzata come riferimento all'oggetto processbuilder coerente con l'SO.
-	private static int db_pointer = 0;
-	private static final int MAXLEN = 30;
-	private static Studente[]db_studente = new Studente[MAXLEN];
+	private static int db_pointer = 0; //Indice del successivo slot vuoto del db_studente
+	private static final int MAXLEN = 30; //Slot massimi db_studente;
+	private static Studente[]db_studente = new Studente[MAXLEN]; //db_studente
 	private static final Scanner keyboard = new Scanner(System.in); //Stream d'ingresso
 	
 	
