@@ -1,0 +1,4 @@
+MAKEFILE:
+
+			make compile > COMPILA IL PACCHETTO
+			make exec > ESEGUE 
