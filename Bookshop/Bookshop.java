@@ -14,9 +14,10 @@ public class Bookshop{
 		}
 		database = temp;
 		PrintStream printer = new PrintStream(database);
-		for (int j = 0; j < batch.length(); j++)
+		inventario = batch.clone();
+		batch.removeAll();
+		for (int j = 0; j < inventario.length(); j++)
 		{
-			inventario.add(batch.get(j));
 			String[]details = inventario[j].getDetails();		
 			for (int i = 0; i<details.length(); i++)
 				printer.println(details[i]);
