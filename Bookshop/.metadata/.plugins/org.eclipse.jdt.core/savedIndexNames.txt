@@ -1,0 +1,1 @@
+INDEX VERSION 1.126+/home/basso/Desktop/POO/04552GAUDIOSI/.metadata/.plugins/org.eclipse.jdt.core
