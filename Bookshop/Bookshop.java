@@ -32,112 +32,117 @@ import java.io.*;
 import java.util.*;
 
 public class Bookshop{
-	public Bookshop(ArrayList<Shelf> batch)
+	class QueryServer implements Query
 	{
-		this.makeDB();
-		inventario = batch.clone();
-		this.writeDB();
-		batch.removeAll();
-	}
-	
-	public Bookshop(File sourceDB)
+		public ArrayList<String> sortByAuthor(Object o,String name)
+		{
+			Bookshop target = (Bookshop) o;
+			ArrayList<String> results = new ArrayList<String>();
+			for(Shelf e: target.inventario)
+			{
+				ArrayList<String>details = e.getDetails();
+				if (details.get(AUTORE).equalsIgnoreCase(name))
+					results.add(details.get(TITOLO));
+			}
+			return results;
+		}
+		public ArrayList<String> sortByArgument(Object o,String argument)
+		{
+				Bookshop target = (Bookshop)o;
+				ArrayList<String> results = new ArrayList<String>();
+				for(Shelf e: target.inventario)
+				{
+					if (e.getTitle().toLowerCase().contains(argument.toLowerCase()))
+						results.add(e.getTitle());
+				}
+				return results;
+		}
+		public ArrayList<String> sortByLess(Object o, int amount, Boolean flag)
+		{
+			Bookshop target = (Bookshop)o;
+			ArrayList<String> results = new ArrayList<String>();
+			for (Shelf e: target.inventario)
+				if ((e.getCopies()) < amount || (e.getCopies()) == amount && flag) results.add(e.getTitle());
+			return results;
+		}
+		public ArrayList<String> sortByMore(Object o, int amount, Boolean flag)
+		{
+			Bookshop target = (Bookshop)o;
+			ArrayList<String> results = new ArrayList<String>();
+			for (Shelf e: target.inventario)
+				if ((e.getCopies()) > amount || (e.getCopies()) == amount && flag) results.add(e.getTitle());
+			return results;
+		}
+		public void add(Object o,String title, int amount)
+		{
+			Bookshop target = (Bookshop)o;
+			for(Shelf e : target.inventario)
+				if (e.getTitle().equalsIgnoreCase(title))
+					{
+						e.add(amount);					
+						return;
+					}
+		}
+	}	
+	public Bookshop(File sourceDB) throws IOException,FileNotFoundException
 	{
 		this.readDB(sourceDB);
 		database = sourceDB;
 	}
-	public Bookshop(){}
-	
-	private void readDB(File input)
+	public Bookshop()  throws IOException,FileNotFoundException
+	{
+		this.makeDB();
+	}
+
+	private void readDB(File input) throws IOException,FileNotFoundException
 	{
 		Scanner stream = new Scanner(database);
 		while (stream.hasNextLine())
-			inventario.add(new Item(
+			inventario.add(new Shelf(
 							stream.nextLine(),	//Titolo							
 							stream.nextLine(), //Autore
-							stream.nextLine()) //Casa editrice
+							stream.nextLine(), //Casa editrice
+							Integer.parseInt(stream.nextLine())) //Numero copie
 						  );	
 	}
-	private void writeDB()
+	private void writeDB() throws FileNotFoundException
 	{
 		PrintStream printer = new PrintStream(database);
-		for (int j = 0; j < inventario.length(); j++)
+		for (Shelf e : inventario)
 		{
-			String[]details = inventario[j].getDetails();		
-			for (int i = 0; i<details.length(); i++)
-				printer.println(details[i]);
-			printer.println(inventario[j].getCopies());	
+			ArrayList<String>details = e.getDetails();		
+			for (String s: details)
+				printer.println(s);
+			printer.println(e.getCopies());	
 		}	
 	}
 	
-	private void makeDB()
+	private void makeDB() throws IOException,FileNotFoundException
 	{
 		new File("lib").mkdir();
-		File temp;
-		if (!(temp = File(PATH+EXT).createNewFile()))
+		int i;
+		File temp = new File (PATH+EXT);
+		if (!(temp.createNewFile()))
 		{
-			for (int i = 1;i<=10;i++)
-				if ((temp = File(PATH+Integer.toString(i)+EXT).createNewFile()))
+			for (i = 1;i<=10;i++)
+			{
+				temp = new File(PATH+Integer.toString(i)+EXT);
+				if ((temp.createNewFile()))
 					break;
+			}
 			if (i > 10) database = null;
 		}
 		database = temp;
 		return;
 	}
-	public ArrayList<String> lookAuthor(String name)
-	{
-		ArrayList<String> results;
-		for(Item e: inventario)
-		{
-			String[]tmp = e.getDetails();
-			if (tmp[1].equalsIgnoreCase(name))
-				results.add(tmp[0]);
-		}
-		return results;
-	}
-	
-	public ArrayList<String> look(String target)
-	{
-		ArrayList<String> results;
-		for(Item e: inventario)
-		{
-			String[]tmp = e.getDetails();
-			if (tmp[0].toLowerCase().contains(target.toLowerCase()))
-				results.add(tmp[0]);
-		}
-		return results;
-	}
-	
-	public ArrayList<String> lookCopy(int amount, Boolean flag)
-	{
-		ArrayList<String> results;
-		for(Item e: inventario)
-		{
-			String[]tmp = e.getDetails();
-			if (tmp[1].equalsIgnoreCase(name))
-				if (flag)
-					if(e.getCopies() == amount)
-						results.add(e);
-						else if (e.getCopies() <= amount)
-							results.add(e);
-		}
-		return results;
-	}
 
-	public void addBook(String title, int amount)
-	{
-		for(Item e: inventario)
-		{
-			String[]tmp = e.getDetails();
-			if (tmp[0].equalsIgnoreCase(name))
-				e.add(amount);
-				return;
-		}
-
-	}
 	
 	private ArrayList<Shelf> inventario;
 	private File database;
 	private static String PATH = "lib/db"; 
 	private static String EXT = ".txt";
+	private static int TITOLO = 0;
+	private static int AUTORE = 1;
+	private static int CASAED = 2;
 	private static int MAXATTEMPT = 10;
 }

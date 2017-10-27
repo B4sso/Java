@@ -4,9 +4,9 @@
  *  importa che sia un libro, una rivista o un dvd.
  * 
  */
-
+import java.util.*;
 public interface Item
 {
-	String[] getDetails();
-	Item newItem(String titolo,String autore,String publisher);
+	ArrayList<String> getDetails(); //Restituisce i dettagli dell'Item
+	String getTitle(); //Restituisce l'etichetta dell'Item
 }

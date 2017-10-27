@@ -23,9 +23,16 @@ public class Libro implements Item{
 		this.titolo = formats(titolo);
 		this.editore = formats(editore);
 	}
-	public String[] getDetails()
+	public String getTitle()
 	{
-		String[]details = {autore,titolo,editore};
+		return titolo;
+	}
+	public ArrayList<String> getDetails()
+	{
+		ArrayList<String> details = new ArrayList<String>();
+		details.add(titolo);
+		details.add(autore);
+		details.add(editore);
 		return details;
 	}
 	
@@ -36,7 +43,8 @@ public class Libro implements Item{
 		 */
 		String tmp = target.trim();
 		if(tmp.length() < 1) return "NaName";
-		return Character.toString(tmp.charAt(0)).toUpperCase() + tmp.substring(1,tmp.length().toLowerCase());
+		tmp = Character.toString(tmp.charAt(0)).toUpperCase() + tmp.substring(1,tmp.length()).toLowerCase();
+		return tmp;
 		
 	}
 	
