@@ -83,33 +83,33 @@ public class Bookshop{
 		database = temp;
 		return;
 	}
-	public ArrayList<Item> lookAuthor(String name)
+	public ArrayList<String> lookAuthor(String name)
 	{
-		ArrayList<Item> results;
+		ArrayList<String> results;
 		for(Item e: inventario)
 		{
 			String[]tmp = e.getDetails();
 			if (tmp[1].equalsIgnoreCase(name))
-				results.add(e);
+				results.add(tmp[0]);
 		}
 		return results;
 	}
 	
-	public ArrayList<Item> look(String target)
+	public ArrayList<String> look(String target)
 	{
-		ArrayList<Item> results;
+		ArrayList<String> results;
 		for(Item e: inventario)
 		{
 			String[]tmp = e.getDetails();
 			if (tmp[0].toLowerCase().contains(target.toLowerCase()))
-				results.add(e);
+				results.add(tmp[0]);
 		}
 		return results;
 	}
 	
-	public ArrayList<Item> lookCopy(int amount, Boolean flag)
+	public ArrayList<String> lookCopy(int amount, Boolean flag)
 	{
-		ArrayList<Item> results;
+		ArrayList<String> results;
 		for(Item e: inventario)
 		{
 			String[]tmp = e.getDetails();

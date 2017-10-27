@@ -6,7 +6,6 @@ import java.io.*;
  * 		|COPIES: INT (Numero di copie in riferimento all'oggetto in RIFERIMENTO)
  */
 
-
 public class Shelf{
 	
 	public Shelf(Item item, int amount)
@@ -23,6 +22,10 @@ public class Shelf{
 	public void add()
 	{
 		copies++;
+	}
+	public void add(int amount)
+	{
+		copies = copies+amount;
 	}
 	public void remove()
 	{

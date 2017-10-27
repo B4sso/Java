@@ -8,7 +8,5 @@
 public interface Item
 {
 	String[] getDetails();
-	Item setDetails(String titolo,String autore,String editore,int edizione);
-	
-
+	Item newItem(String titolo,String autore,String publisher);
 }

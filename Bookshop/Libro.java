@@ -2,35 +2,45 @@ import java.util.*;
 import java.io.*;
 /*
  * Libro ci permette di istanziare un oggetto Libro che contiene:
- * 	 |AUTORE : (Stringa)
- *   |TITOLO : (Stringa)
- *   |EDITORE :(Stringa)
- *   |EDIZIONE :(Intero che rappresenta un'edizione diversa dello stesso libro virtuale)
+ * (n.b. Stringa formattata = Stringa senza spazi vuoti iniziali e finali, non vuota, di len > 3 e di carattere iniziale in maiusc)
+ * 	 |AUTORE : (Stringa formattata)
+ *   |TITOLO : (Stringa formattata)
+ *   |EDITORE :(Stringa formattata)
+ *   
  *   
  */
 public class Libro implements Item{
 	
-	public Item(String titolo, String autore, String editore, int edizione)
+	public Item newItem(String titolo, String autore, String editore)
 	{
-		return new Libro (autore,titolo,editore,edizione);
+		return new Libro (autore,titolo,editore);
 	}
 	
 	
-	public Libro(String autore,String titolo, String editore, int edizione)
+	public Libro(String autore,String titolo, String editore)
 	{
 		this.autore = formats(autore);
 		this.titolo = formats(titolo);
 		this.editore = formats(editore);
-		this.edizione = edizione;
 	}
 	public String[] getDetails()
 	{
-		String[4]details = {autore,titolo,editore,Integer.toString(edizione)};
+		String[]details = {autore,titolo,editore};
 		return details;
+	}
+	
+	static private String formats(String target)
+	{
+		/*
+		 * "  fRanCeSco " -> "Francesco"
+		 */
+		String tmp = target.trim();
+		if(tmp.length() < 1) return "NaName";
+		return Character.toString(tmp.charAt(0)).toUpperCase() + tmp.substring(1,tmp.length().toLowerCase());
+		
 	}
 	
 	private String autore;
 	private String titolo;
 	private String editore;
-	private int edizione;
 }
