@@ -158,6 +158,13 @@ public class Bookshop{
 				temp = new File(PATH+Integer.toString(i)+EXT);
 				if ((temp.createNewFile()))
 					break;
+				/*
+				 * PROVA A CREARE FILE (nomefile_#tentativo_estensione)
+				 * Se fallisce PROVA A CREARE FILE (nome_#tentativo+1_estensione)
+				 * Se riesce break
+				 * 
+				 * 
+				 */
 			}
 			if (i > MAXATTEMPT) database = null;
 		}
