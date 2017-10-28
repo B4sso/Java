@@ -9,11 +9,15 @@ package classe2.consegna.server;
  * 	Nomelibro (Stringa)
  *  Autore (Stringa)
  *  Casa editrice (Stringa)
- *  Edizione (int)
+ *  Numerocopie (Stringa)
+ *  
  *  
  *  Alternativamente lo si puï¿½ generare da un ArrayList di Shelf \ da un solo Shelf, oppure si puï¿½ creare un Bookshop vuoto, per poi
  *  riempirlo. Tutti e tre i casi generano un database: db.txt | db_n.txt, dove n ï¿½ il numero di database presenti in cartella lib (che viene generata
  *  se assente).
+ *  
+ *  QUERY SERVER 
+ * 	QueryServer è un'inner class di Bookshop che implementa l'interfaccia Query: QueryServer.
  *  
  *	COSTRUTTORI:
  *	|Bookshop(<Shelf>) -> Restituisce un Bookshop con <Shelf> elementi e database: db.txt | db_n.txt.
@@ -92,7 +96,7 @@ public class Bookshop{
 						if (copies >= MAXCOPY) return;
 						if ((copies + amount) >= MAXCOPY) amount = MAXCOPY;
 						e.add(amount);
-						target.writeDB();
+						target.writeDB(); //Il db viene riscritto da capo.
 						return;
 					}
 		}
