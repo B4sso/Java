@@ -88,6 +88,8 @@ public class Bookshop{
 		}
 		public void add(Object o,String title, int amount) throws FileNotFoundException
 		{
+			assert (o != null);
+			assert (o instanceof Bookshop);
 			Bookshop target = (Bookshop)o;
 			for(Shelf e : target.inventario)
 				if (e.getTitle().equalsIgnoreCase(title))
