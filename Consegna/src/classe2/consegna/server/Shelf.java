@@ -1,12 +1,5 @@
 package classe2.consegna.server;
 import java.util.*;
-import java.io.*;
-/*
- * Shelf ci permette di istanziare un oggetto contenitore composto da:
- * 		|RIFERIMENTO:  RIF. ITEM (Riferimento ad un oggetto. L'originale.)
- * 		|COPIES: INT (Numero di copie in riferimento all'oggetto in RIFERIMENTO)
- */
-import java.util.*;
 public class Shelf{
 	
 	public Shelf(String titolo, String autore, String publisher,int amount)

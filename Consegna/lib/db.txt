@@ -1,0 +1,26 @@
+ENTRY
+Martello bell'omo
+Fiorentino incudine
+Editore gaudiosi
+14
+ENTRY
+Come ho perso una gamba
+Armando braccia
+Editore aracne
+12
+ENTRY
+Sogni rossi
+Francesco sordi
+Editore indipendente
+76
+ENTRY
+Una voce di notte
+Camilleri andrea
+Sellerio editore palermo
+44
+ENTRY
+Fai bei sogni
+Gramellini massimo
+Longanesi
+14
+EOF

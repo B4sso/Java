@@ -1,6 +1,5 @@
 package classe2.consegna.server;
 import java.util.*;
-import java.io.*;
 /*
  * Libro ci permette di istanziare un oggetto Libro che contiene:
  * (n.b. Stringa formattata = Stringa senza spazi vuoti iniziali e finali, non vuota, di len > 3 e di carattere iniziale in maiusc)

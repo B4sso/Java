@@ -116,7 +116,7 @@ public class Bookshop{
 		Scanner stream = new Scanner(input);
 		while (true)
 		{
-			if ((stream.nextLine()).equalsIgnoreCase("EOF")) return;
+			if ((stream.nextLine()).equalsIgnoreCase("EOF")) {stream.close(); return;}
 			inventario.add(new Shelf(
 							stream.nextLine(),	//Titolo							
 							stream.nextLine(), //Autore
@@ -139,6 +139,7 @@ public class Bookshop{
 			printer.println(e.getCopies());	
 		}
 		printer.println("EOF");
+		printer.close();
 	}
 	
 	private void makeDB() throws IOException,FileNotFoundException
@@ -170,9 +171,5 @@ public class Bookshop{
 	private static String PATH = "lib/db"; 
 	private static String EXT = ".txt";
 	private final static int MAXCOPY = 44;
-	private final static int TITOLO = 0; //Le costanti TITOLO,AUTORE E CASAED ci permettono di navigare nel ArrayList<String>details
-											//dato che è un arraylist strutturato.
-	private final static int AUTORE = 1;
-	private final static int CASAED = 2;
 	private final static int MAXATTEMPT = 10;
 }
