@@ -94,7 +94,7 @@ public class Bookshop{
 					{
 						int copies = e.getCopies();
 						if (copies >= MAXCOPY) return;
-						if ((copies + amount) >= MAXCOPY) amount = MAXCOPY;
+						if ((copies + amount) >= MAXCOPY) amount = MAXCOPY-copies;
 						e.add(amount);
 						target.writeDB(); //Il db viene riscritto da capo.
 						return;
