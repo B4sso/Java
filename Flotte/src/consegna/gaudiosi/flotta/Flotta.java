@@ -1,22 +1,18 @@
 package consegna.gaudiosi.flotta;
 import java.util.ArrayList;
-
 public class Flotta{
 	public Flotta(){}
-	public void add(Navicella ship)
+	public void addNavicella(Navicella toadd)
 	{
-		if (this.has(ship)) return;
-		
-		
+		if (this.has(toadd)) return;
+		fleet.add(toadd);
 		
 	}
-	
-	public Boolean has(Navicella ship)
+	public Boolean has(Navicella toadd)
 	{
-		for (Navicella n: fleet)
-			if(n.equals(ship)) return true;
-		return false;
-		
-	}
-	public ArrayList<Navicella> fleet;
+		for(Navicella e: fleet)
+			if (e.equals(toadd)) return true;
+		return false;	
+	}	
+	private ArrayList<Navicella> fleet;
 }

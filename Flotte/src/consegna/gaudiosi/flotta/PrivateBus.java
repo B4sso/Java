@@ -2,13 +2,19 @@ package consegna.gaudiosi.flotta;
 import java.util.GregorianCalendar;
 
 public class PrivateBus extends Navicella{
-	public PrivateBus(
-			GregorianCalendar firstFlight,
-			GregorianCalendar nextFlight,
-			GregorianCalendar lastRev,
-			int booked,String destination,int cid)
+	public PrivateBus
+					(
+			
+							GregorianCalendar firstFlight,
+							GregorianCalendar nextFlight,
+							GregorianCalendar lastRev,
+							int serial,
+							int booked,
+							String destination,
+							int cid
+					)
 	{
-		super(firstFlight,nextFlight,lastRev,booked);
+		super(firstFlight,nextFlight,lastRev,booked,serial);
 		this.destination = destination;
 		this.cid = cid;
 	}
@@ -16,14 +22,7 @@ public class PrivateBus extends Navicella{
 	{
 		return super.toString() + 
 		"-"+
-		Integer.toString(cid)+
-		"-"+
-		destination;
-	}
-
-	public Boolean equals(PrivateBus compared)
-	{
-		return (this.toString().equals(compared.toString()));
+		Integer.toString(cid);
 	}
 	
 	private String destination;

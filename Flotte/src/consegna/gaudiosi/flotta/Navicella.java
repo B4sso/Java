@@ -1,9 +1,9 @@
 package consegna.gaudiosi.flotta;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-public class Navicella{
+public abstract class Navicella{
 	
-	public Navicella(GregorianCalendar firstFlight, GregorianCalendar nextFlight,GregorianCalendar lastRev, int booked)
+	public Navicella(GregorianCalendar firstFlight, GregorianCalendar nextFlight,GregorianCalendar lastRev, int booked,int serial)
 	{
 		GregorianCalendar today = new GregorianCalendar();
 		assert this.firstFlight.before(today);
@@ -11,29 +11,27 @@ public class Navicella{
 		if ((this.firstFlight.before(today)) ||!(this.nextFlight.before(today)))
 			return;
 		
+		this.serial = serial;
 		this.firstFlight = firstFlight;
 		this.nextFlight = nextFlight;
 		this.lastRev = lastRev;
 		this.booked = booked;
 	}
-	public String get(Details param)
+	public GregorianCalendar get(Details param)
 	{
 		switch(param)
 		{
 			case FIRSTF: //Primo volo
-			return firstFlight.toString();
+			return firstFlight;
 			
 			case NEXTF: //volo successivo
-			return nextFlight.toString();
+			return nextFlight;
 			
 			case LASTREV://ultima revisione
-			return lastRev.toString();
-			
-			case BOOKED://numero registrati
-			return Integer.toString(booked);
+			return lastRev;
 			
 			default:
-			return firstFlight.toString();	
+			return firstFlight;	
 		}
 	}
 	
@@ -73,7 +71,14 @@ public class Navicella{
 	{
 		booked = 0;
 	}
-	
+	public Integer getBooked()
+	{
+		return booked;
+	}
+	public Integer getSerial()
+	{
+		return serial;
+	}
 	public Boolean isAncient()
 	{
 		GregorianCalendar today = new GregorianCalendar();
@@ -96,24 +101,16 @@ public class Navicella{
 	
 	public void makeRevision()
 	{
-		lastRev = new GregorianCalendar(); 
-		
-	}
-	
-	public String toString()
-	{
-		return firstFlight.toString() +
-			   "-"+
-			   nextFlight.toString()+ 
-			   "-"+
-			   lastRev.toString() +
-			   "-"+
-			   Integer.toString(booked);
+		lastRev = new GregorianCalendar(); 	
 	}
 	
 	public Boolean equals(Navicella compared)
 	{
-		return this.toString().equals(compared.toString());
+		return this.getSerial() == compared.getSerial();
+	}
+	public String toString()
+	{
+		return "["+serial+"]"+firstFlight.toString();
 	}
 	
 	public final int EXPIREDTRESHOLD = 3;
@@ -121,7 +118,8 @@ public class Navicella{
 	public static enum Details{FIRSTF,NEXTF,LASTREV,BOOKED};
 	private GregorianCalendar firstFlight;
 	private GregorianCalendar nextFlight;
-	private GregorianCalendar lastRev;
+	private GregorianCalendar lastRev; 
+	private int serial;
 	private int booked;
 	
 	

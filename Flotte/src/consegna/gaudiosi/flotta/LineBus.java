@@ -3,33 +3,31 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class LineBus extends Navicella{
-	public LineBus(
-			GregorianCalendar firstFlight,
-			GregorianCalendar nextFlight,
-			GregorianCalendar lastRev,
-			int booked,
-			ArrayList<String> route,
-			int flightID,
-			int flightTime)
+	public LineBus
+					(
+							GregorianCalendar firstFlight,
+							GregorianCalendar nextFlight,
+							GregorianCalendar lastRev,
+							int booked,
+							int serial,
+							ArrayList<String> route,
+							int flightID,
+							int flightTime
+					)
 	{
-		super(firstFlight,nextFlight,lastRev,booked);
+		super(firstFlight,nextFlight,lastRev,booked,serial);
 		this.route = route;
 		this.flightID = flightID;
 		this.flightTime = flightTime;
 	}
 	public String toString()
 	{
-		String part = "ROUTE:";
-		for (String s: route)
-			part = part + s;
-		return super.toString() + "-"+ "ID:"+ Integer.toString(flightID)+part+Integer.toString(flightTime);
+		return super.toString() + "FID["+flightID+"]";
 	}
-
-	public Boolean equals(LineBus compared)
+	public void addStop(String stop)
 	{
-		return (this.toString().equals(compared.toString()));
+		route.add(stop);
 	}
-	
 	
 	private ArrayList<String>route;
 	private int flightID;
