@@ -25,7 +25,6 @@ public class Tester{
 			Museo e = new MuseoS(100);
 			ministero.addMuseo(e);
 			e.addVisita(visitorList.get(counter));
-			visitorList.get(counter); //Il programma non somma l'entry fee
 			e.setId(i);
 			counter++;
 		}

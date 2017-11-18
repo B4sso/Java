@@ -31,8 +31,7 @@ public class LCCNC{
 	}
 	public Museo getMuse(int ID)
 	{
-		return ministero.get(ID);
-		
+		return ministero.get(ID);	
 	}
 
 	private ArrayList<Museo>ministero;

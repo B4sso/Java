@@ -24,8 +24,14 @@ public class MuseoS extends Museo{
 		if (list.size() >= maxvisitor)
 			return;
 		list.add(target);
+		target.addFee(entryfee);
 		noVisite = list.size();
-		System.out.println(noVisite);
+	}
+	
+	public String toString()
+	{
+		if (id == -1 ) return "MUSEOSAVOIA:"+"[UNKNOWN]"+maxvisitor;
+		return "MUSEOSAVOIA:"+"["+id+"]" + maxvisitor;
 	}
 	private double entryfee;
 	private ArrayList<Visitor>list;

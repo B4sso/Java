@@ -7,6 +7,7 @@ public class MuseoB extends Museo{
 		super(visitatori);
 		noVisite = 0;
 		activities = new ArrayList<String>();
+		activities.add(DEFAULTACTIVITY);
 	}
 	
 	public void addVisita(Visitor visitor)
@@ -15,6 +16,7 @@ public class MuseoB extends Museo{
 		if (noVisite >= maxvisitor)
 			return;
 		noVisite++;
+		visitor.addActivity(DEFAULTACTIVITY);
 	}
 	public void addActivity(String target)
 	{
@@ -22,7 +24,13 @@ public class MuseoB extends Museo{
 		if (activities.indexOf(tmp) == -1)
 			activities.add(tmp);
 	}
+	public String toString()
+	{
+		if (id == -1 ) return "MUSEOBORBO:"+"[UNKNOWN]"+maxvisitor;
+		return "MUSEOBORBO:"+"["+id+"]" + maxvisitor;
+	}
 	private int noVisite;
 	private ArrayList<String>activities;
 	
+	public static final String DEFAULTACTIVITY = "Visita";
 }
